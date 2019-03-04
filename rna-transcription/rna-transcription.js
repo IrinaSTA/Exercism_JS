@@ -6,14 +6,14 @@ const nucleotideEquivalents = {
 }
 
 export const toRna = function(dnaStrand) {
-  let rnaStrand = '';
-  dnaStrand.split('').forEach(function(nucleotide) {
-    let rna = nucleotideEquivalents[nucleotide]
-    if (rna == undefined) {
-      throw 'Invalid input DNA.'
-    } else {
-      rnaStrand += rna;
-    }
-  });
-  return rnaStrand;
+  return dnaStrand.split('').map(nucleotide => convertToRna(nucleotide)).join('');
 };
+
+function convertToRna(nucleotide) {
+  let rna = nucleotideEquivalents[nucleotide];
+  if (rna == undefined) {
+    throw 'Invalid input DNA.'
+  } else {
+    return rna
+  }
+}
